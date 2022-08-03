@@ -59,6 +59,7 @@ const Home: NextPage = () => {
       }
     }
     else {
+      alert("here")
       width = streamWidth;
       height = streamHeight;
     }
