@@ -73,7 +73,8 @@ const Home: NextPage = () => {
     }
 
     let intervalId: number;
-    const config = { video: { width: 727, height: 637, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
+    // const config = { video: { width: 727, height: 637, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
+    const config = { video: { width: 1920, height: 1080, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
     navigator.mediaDevices.getUserMedia(config).then(stream => {
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       if (!canvas) {
