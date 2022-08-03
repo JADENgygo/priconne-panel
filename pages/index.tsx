@@ -21,7 +21,7 @@ const Home: NextPage = () => {
         <p>元ネタ: <a href="https://cystore.com/products/4573478717023">エリザベスパークの特大顔出しパネル</a></p>
         <canvas className="mb-3" id="canvas" width={width} height={height} />
         <div>
-          <video id="video" width={0} height={0} playsInline autoPlay muted loop style={{"transform": "scaleX(-1)"}} />
+          <video id="video" width={1} height={1} playsInline autoPlay muted loop style={{"transform": "scaleX(-1)"}} />
         </div>
         <div className="mb-3">
           <button onClick={saveImage} className="btn btn-dark">画像を保存</button>
