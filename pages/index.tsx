@@ -40,38 +40,39 @@ const Home: NextPage = () => {
     }
     
     const os = platform?.os?.family?.toLowerCase();
-    // console.log("os", os)
-    alert(os)
-    // if (!os) {
-    //   return;
-    // }
+    if (!os) {
+      alert("return")
+      return;
+    }
     let width: number;
     let height: number;
-    // if (os.startsWith('ios') || os.startsWith('android')) {
-      // switch (screen.orientation.type) {
-      //   case "landscape-primary":
-      //   case "landscape-secondary": 
-      //     width = streamWidth;
-      //     height = streamHeight;
-      //     break;
-      //   case "portrait-secondary":
-      //   case "portrait-primary":
-      //     console.log('here')
-      //     width = streamWidth;
-      //     height = streamHeight;
-      //     // width = streamHeight;
-      //     // height = streamWidth;
-      //     break;
-      //   default:
-      //     width = streamWidth;
-      //     height = streamHeight;
-      //     break;
-      // }
-    // }
-    // else {
-    //   width = streamWidth;
-    //   height = streamHeight;
-    // }
+    if (os.startsWith('ios') || os.startsWith('android')) {
+      alert("if")
+      switch (screen.orientation.type) {
+        case "landscape-primary":
+        case "landscape-secondary": 
+          alert("landscape")
+          width = streamWidth;
+          height = streamHeight;
+          break;
+        case "portrait-secondary":
+        case "portrait-primary":
+          alert("portrait")
+          width = streamWidth;
+          height = streamHeight;
+          break;
+        default:
+          alert("default")
+          width = streamWidth;
+          height = streamHeight;
+          break;
+      }
+    }
+    else {
+      alert("else")
+      width = streamWidth;
+      height = streamHeight;
+    }
     // context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
     context.drawImage(video, canvas.width / 2 - streamWidth / 2, canvas.height / 2 - streamHeight / 2);
 
