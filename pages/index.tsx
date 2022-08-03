@@ -45,7 +45,7 @@ const Home: NextPage = () => {
           context.translate(-canvas.width, 0);
         }
 
-        context.drawImage(img, 0, 0);
+        //context.drawImage(img, 0, 0);
       }, 33);
     }).catch(err => console.log('error: ' + err));
   }, [faced]);
