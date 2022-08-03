@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
       <footer>
         <div className="bg-secondary bg-opacity-10 text-center pt-3 pb-3" >
-          <div className="pb-3">
+          <div>
             <a href="https://twitter.com/@JADENgygo" className="me-3 link link-dark" >
               <i className="bi bi-twitter"></i>
             </a>

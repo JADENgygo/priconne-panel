@@ -74,6 +74,7 @@ const Home: NextPage = () => {
       setCameraStream(_ => stream);
       const streamWidth = stream.getVideoTracks()[0].getSettings().width;
       const streamHeight = stream.getVideoTracks()[0].getSettings().height;
+      alert(streamWidth + " " + streamHeight)
       if (!streamWidth) {
         return;
       }
