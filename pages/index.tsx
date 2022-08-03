@@ -64,7 +64,7 @@ const Home: NextPage = () => {
         <p className="fs-1">プリコネパネル</p>
         <p>カメラの使用を許可すると顔出しパネルで画像を作成できます</p>
         <p>元ネタ: <a href="https://cystore.com/products/4573478717023">エリザベスパークの特大顔出しパネル</a></p>
-        <canvas className="mb-3" id="canvas" width={width} height={height} />
+        <canvas id="canvas" width={width} height={height} />
         <div>
           <video id="video" width={1} height={1} playsInline autoPlay muted loop style={{"transform": "scaleX(-1)"}} />
         </div>
