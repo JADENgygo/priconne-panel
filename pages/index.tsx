@@ -39,15 +39,17 @@ const Home: NextPage = () => {
 
     const os = platform?.os?.family?.toLowerCase();
     const product = platform?.product?.toLowerCase();
-    if (!os || !product) {
-      alert("os: " + os + " product: " + product)
-      return;
-    }
+    // // alert(product)
+    // if (!os || !product) {
+    //   // alert("os: " + os + " product: " + product)
+    //   return;
+    // }
     let width: number;
     let height: number;
-    if (os.startsWith('ios') || os.startsWith('android') || product.startsWith("ipad")) {
-      alert("here")
-      alert("here: " + window.orientation)
+    console.log(window.orientation)
+    // if (os.startsWith('ios') || os.startsWith('android') || product.startsWith("ipad")) {
+      // alert("here")
+      // alert("here: " + window.orientation)
       switch (window.orientation) {
         case 0:
         case 180:
@@ -59,12 +61,12 @@ const Home: NextPage = () => {
           height = streamHeight;
           break;
       }
-    }
-    else {
-      alert("here: " + os)
-      width = streamWidth;
-      height = streamHeight;
-    }
+    // }
+    // else {
+    //   // alert("here: " + os)
+    //   width = streamWidth;
+    //   height = streamHeight;
+    // }
     const video = document.getElementById('video') as HTMLVideoElement;
     if (!video) {
       return;
