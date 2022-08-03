@@ -62,6 +62,7 @@ const Home: NextPage = () => {
       width = streamWidth;
       height = streamHeight;
     }
+    context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
 
 
