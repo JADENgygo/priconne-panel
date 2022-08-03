@@ -10,7 +10,7 @@ footer {
   width: 100%;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   canvas {
     width: 100%;
   }
