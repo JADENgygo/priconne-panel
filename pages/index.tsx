@@ -54,6 +54,10 @@ const Home: NextPage = () => {
     callbackRef.current = callback;
   }, [callback]);
 
+
+  // debug
+  const [t, sett] = useState(0);
+
   useEffect(() => {
     const video = document.getElementById('video') as HTMLVideoElement;
     if (!video) {
@@ -63,7 +67,8 @@ const Home: NextPage = () => {
     let intervalId: number;
     const config = { video: { facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
     navigator.mediaDevices.getUserMedia(config).then(stream => {
-      alert("tracks: " + stream.getVideoTracks().length)
+      console.log("tracks: " + stream.getVideoTracks().length)
+      sett(stream.getVideoTracks().length)
 
       video.srcObject = stream;
       setCameraStream(_ => stream);
@@ -108,6 +113,7 @@ const Home: NextPage = () => {
           <button onClick={changeCamera} className="btn btn-dark me-3">カメラ切替</button>
           <button onClick={saveImage} className="btn btn-dark">画像を保存</button>
         </div>
+        <div>{t}</div>
         <div className="alert alert-info" role="alert">
           保存ボタンが動作しない場合は、画像部分を直接保存してください
         </div>
