@@ -48,6 +48,7 @@ const Home: NextPage = () => {
     let height: number;
     if (os.startsWith('ios') || os.startsWith('android')) {
       alert("if")
+      alert("type " + screen.orientation.type);
       switch (screen.orientation.type) {
         case "landscape-primary":
         case "landscape-secondary": 
