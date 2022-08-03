@@ -74,7 +74,7 @@ const Home: NextPage = () => {
 
     let intervalId: number;
     // const config = { video: { width: 727, height: 637, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
-    const config = { video: { width: 300, height: 337, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
+    const config = { video: { width: 600, height: 600, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
     navigator.mediaDevices.getUserMedia(config).then(stream => {
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       if (!canvas) {
