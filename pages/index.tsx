@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
+import { useState } from 'react';
 
 const Home: NextPage = () => {
+  const [faced, setFaced] = useState(true);
   const width = 727;
   const height = 637;
   const saveImage = () => {
@@ -24,6 +26,7 @@ const Home: NextPage = () => {
           <video id="video" width={1} height={1} playsInline autoPlay muted loop style={{"transform": "scaleX(-1)"}} />
         </div>
         <div className="mb-3">
+          <button onClick={() => setFaced(!faced)} className="btn btn-dark me-3">カメラ切替</button>
           <button onClick={saveImage} className="btn btn-dark">画像を保存</button>
         </div>
         <div className="alert alert-info" role="alert">
@@ -32,7 +35,7 @@ const Home: NextPage = () => {
       </div>
       <script dangerouslySetInnerHTML={{__html: `
         const video = document.getElementById('video');
-        const config = { video: true, audio: false };
+        const config = { video: { facingMode: ${faced ? "'user'" : "{exact: 'environment'}"} }, audio: false };
         navigator.mediaDevices.getUserMedia(config).then(stream => {
           video.srcObject = stream;
 
