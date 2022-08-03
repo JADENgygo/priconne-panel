@@ -27,7 +27,7 @@ const Home: NextPage = () => {
           保存ボタンが動作しない場合は、画像部分を直接保存してください
         </div>
       </div>
-      <video id="video" width={width} height={height} autoPlay style={{"display": "none", "transform": "scaleX(-1)"}} />
+      <video id="video" width={width} height={height} autoPlay style={{"display": "block", "transform": "scaleX(-1)"}} />
       <script dangerouslySetInnerHTML={{__html: `
         const video = document.getElementById('video');
         const config = { video: true, audio: false };
