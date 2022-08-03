@@ -20,6 +20,7 @@ const Home: NextPage = () => {
         <p>カメラの使用を許可すると顔出しパネルで画像を作成できます</p>
         <p>元ネタ: <a href="https://cystore.com/products/4573478717023">エリザベスパークの特大顔出しパネル</a></p>
         <canvas className="mb-3" id="canvas" width={width} height={height} />
+        <video id="video" width={0} height={0} playsInline autoPlay muted style={{"transform": "scaleX(-1)"}} />
         <div className="mb-3">
           <button onClick={saveImage} className="btn btn-dark">画像を保存</button>
         </div>
@@ -27,13 +28,11 @@ const Home: NextPage = () => {
           保存ボタンが動作しない場合は、画像部分を直接保存してください
         </div>
       </div>
-      <video id="video" width={width} height={height} style={{"display": "none", "transform": "scaleX(-1)"}} />
       <script dangerouslySetInnerHTML={{__html: `
         const video = document.getElementById('video');
         const config = { video: true, audio: false };
         navigator.mediaDevices.getUserMedia(config).then(stream => {
           video.srcObject = stream;
-          video.play();
 
           const canvas = document.getElementById('canvas');
           const context = canvas.getContext('2d');
