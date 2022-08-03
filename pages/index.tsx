@@ -21,10 +21,6 @@ const Home: NextPage = () => {
   }
 
   const callback = (streamWidth: number, streamHeight: number) => {
-    const video = document.getElementById('video') as HTMLVideoElement;
-    if (!video) {
-      return;
-    }
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     if (!canvas) {
       return;
@@ -39,6 +35,8 @@ const Home: NextPage = () => {
       context.translate(-canvas.width, 0);
     }
     
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
     const os = platform?.os?.family?.toLowerCase();
     const product = platform?.product?.toLowerCase();
     if (!os || !product) {
@@ -47,6 +45,8 @@ const Home: NextPage = () => {
     let width: number;
     let height: number;
     if (os.startsWith('ios') || os.startsWith('android') || product.startsWith("ipad")) {
+      alert("here")
+      alert("here: " + window.orientation)
       switch (window.orientation) {
         case 0:
         case 180:
@@ -64,9 +64,11 @@ const Home: NextPage = () => {
       width = streamWidth;
       height = streamHeight;
     }
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    const video = document.getElementById('video') as HTMLVideoElement;
+    if (!video) {
+      return;
+    }
     context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
-
 
     if (faced) {
       context.scale(-1, 1);
@@ -98,10 +100,7 @@ const Home: NextPage = () => {
       setCameraStream(_ => stream);
       const streamWidth = stream.getVideoTracks()[0].getSettings().width;
       const streamHeight = stream.getVideoTracks()[0].getSettings().height;
-      if (!streamWidth) {
-        return;
-      }
-      if (!streamHeight) {
+      if (!streamWidth || !streamHeight) {
         return;
       }
       intervalId = window.setInterval(() => callbackRef.current(streamWidth, streamHeight), 33);
