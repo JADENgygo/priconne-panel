@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import { useRef, useState, useEffect } from 'react';
-import platform from "platform";
 
 const Home: NextPage = () => {
   const [faced, setFaced] = useState(true);
@@ -37,36 +36,19 @@ const Home: NextPage = () => {
     
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    const os = platform?.os?.family?.toLowerCase();
-    const product = platform?.product?.toLowerCase();
-    // // alert(product)
-    // if (!os || !product) {
-    //   // alert("os: " + os + " product: " + product)
-    //   return;
-    // }
     let width: number;
     let height: number;
-    console.log(window.orientation)
-    // if (os.startsWith('ios') || os.startsWith('android') || product.startsWith("ipad")) {
-      // alert("here")
-      // alert("here: " + window.orientation)
-      switch (window.orientation) {
-        case 0:
-        case 180:
-          width = streamHeight;
-          height = streamWidth;
-          break;
-        default:
-          width = streamWidth;
-          height = streamHeight;
-          break;
-      }
-    // }
-    // else {
-    //   // alert("here: " + os)
-    //   width = streamWidth;
-    //   height = streamHeight;
-    // }
+    switch (window.orientation) { // pcはundefined
+      case 0:
+      case 180:
+        width = streamHeight;
+        height = streamWidth;
+        break;
+      default:
+        width = streamWidth;
+        height = streamHeight;
+        break;
+    }
     const video = document.getElementById('video') as HTMLVideoElement;
     if (!video) {
       return;
