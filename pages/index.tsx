@@ -59,7 +59,7 @@ const Home: NextPage = () => {
       context.scale(-1, 1);
       context.translate(-canvas.width, 0);
     }
-    // context.drawImage(image, 0, 0);
+    context.drawImage(image, 0, 0);
   };
 
   const callbackRef = useRef(callback);
