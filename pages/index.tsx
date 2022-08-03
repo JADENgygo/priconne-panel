@@ -39,7 +39,10 @@ const Home: NextPage = () => {
       context.translate(-canvas.width, 0);
     }
     
-    const os = platform.os.family.toLowerCase();
+    const os = platform?.os?.family?.toLowerCase();
+    if (!os) {
+      return;
+    }
     let width: number;
     let height: number;
     if (os.startsWith('ios') || os.startsWith('android')) {
