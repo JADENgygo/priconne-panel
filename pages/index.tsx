@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useRef, useState, useEffect } from 'react';
+import platform from "platform";
 
 const Home: NextPage = () => {
   const [faced, setFaced] = useState(true);
@@ -33,15 +34,37 @@ const Home: NextPage = () => {
       return;
     }
 
-    // const img = document.createElement('img');
-    // img.src = "/panel.png";
-
     if (faced) {
       context.scale(-1, 1);
       context.translate(-canvas.width, 0);
     }
-    // context.drawImage(video, canvas.width / 2 - streamWidth / 2, canvas.height / 2 - streamHeight / 2);
-    context.drawImage(video, canvas.width / 2 - streamHeight / 2, canvas.height / 2 - streamWidth / 2);
+    
+    const os = platform.os.family.toLowerCase();
+    let width: number;
+    let height: number;
+    if (os.startsWith('ios') || os.startsWith('android')) {
+      switch (screen.orientation.type) {
+        case "landscape-primary":
+        case "landscape-secondary": 
+          width = streamWidth;
+          height = streamHeight;
+          break;
+        case "portrait-secondary":
+        case "portrait-primary":
+          width = streamHeight;
+          height = streamWidth;
+          break;
+        default:
+          width = streamWidth;
+          height = streamHeight;
+          break;
+      }
+    }
+    else {
+      width = streamWidth;
+      height = streamHeight;
+    }
+    context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
 
     if (faced) {
       context.scale(-1, 1);
@@ -55,10 +78,6 @@ const Home: NextPage = () => {
     callbackRef.current = callback;
   }, [callback]);
 
-
-  // debug
-  const [t, sett] = useState(0);
-
   useEffect(() => {
     const video = document.getElementById('video') as HTMLVideoElement;
     if (!video) {
@@ -68,20 +87,15 @@ const Home: NextPage = () => {
     let intervalId: number;
     const config = { video: { facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
     navigator.mediaDevices.getUserMedia(config).then(stream => {
-      console.log("tracks: " + stream.getVideoTracks().length)
-      sett(stream.getVideoTracks().length)
-
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       if (!canvas) {
         return;
       }
-      alert(canvas.width  + " " + canvas.height)
 
       video.srcObject = stream;
       setCameraStream(_ => stream);
       const streamWidth = stream.getVideoTracks()[0].getSettings().width;
       const streamHeight = stream.getVideoTracks()[0].getSettings().height;
-      alert(streamWidth + " " + streamHeight)
       if (!streamWidth) {
         return;
       }
@@ -121,7 +135,6 @@ const Home: NextPage = () => {
           <button onClick={changeCamera} className="btn btn-dark me-3">カメラ切替</button>
           <button onClick={saveImage} className="btn btn-dark">画像を保存</button>
         </div>
-        <div>{t}</div>
         <div className="alert alert-info" role="alert">
           保存ボタンが動作しない場合は、画像部分を直接保存してください
         </div>
