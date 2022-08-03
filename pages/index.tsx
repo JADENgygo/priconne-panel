@@ -73,8 +73,8 @@ const Home: NextPage = () => {
     }
 
     let intervalId: number;
-    // const config = { video: { width: 727, height: 637, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
-    const config = { video: { width: { ideal: 1920 }, height: { ideal: 1080 }, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
+    const config = { video: { width: 727, height: 637, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
+    // const config = { video: { width: { ideal: 1920 }, height: { ideal: 1080 }, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
     navigator.mediaDevices.getUserMedia(config).then(stream => {
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       if (!canvas) {
@@ -113,7 +113,7 @@ const Home: NextPage = () => {
         <p className="fs-1">プリコネパネル</p>
         <p>カメラの使用を許可すると顔出しパネルで画像を作成できます</p>
         <p>元ネタ: <a href="https://cystore.com/products/4573478717023">エリザベスパークの特大顔出しパネル</a></p>
-        <canvas id="canvas" width={1920} height={1080} />
+        <canvas id="canvas" width={width} height={height} />
         <div>
           <video id="video" width={1} height={1} playsInline autoPlay muted loop style={{"transform": faced ? "scaleX(1)" : "scaleX(1)"}} />
         </div>
