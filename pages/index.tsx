@@ -71,7 +71,9 @@ const Home: NextPage = () => {
     //   width = streamWidth;
     //   height = streamHeight;
     // }
+    alert('')
     context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
+
 
     if (faced) {
       context.scale(-1, 1);
