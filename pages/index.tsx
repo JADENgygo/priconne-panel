@@ -39,9 +39,9 @@ const Home: NextPage = () => {
       context.translate(-canvas.width, 0);
     }
     
-    // alert('')
-    // const os = platform?.os?.family?.toLowerCase();
+    const os = platform?.os?.family?.toLowerCase();
     // console.log("os", os)
+    alert(os)
     // if (!os) {
     //   return;
     // }
@@ -72,7 +72,6 @@ const Home: NextPage = () => {
     //   width = streamWidth;
     //   height = streamHeight;
     // }
-    alert('')
     // context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
     context.drawImage(video, canvas.width / 2 - streamWidth / 2, canvas.height / 2 - streamHeight / 2);
 
