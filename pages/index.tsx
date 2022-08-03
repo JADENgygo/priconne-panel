@@ -27,12 +27,13 @@ const Home: NextPage = () => {
           保存ボタンが動作しない場合は、画像部分を直接保存してください
         </div>
       </div>
-      <video id="video" width={width} height={height} autoPlay style={{"display": "block", "transform": "scaleX(-1)"}} />
+      <video id="video" width={width} height={height} style={{"display": "none", "transform": "scaleX(-1)"}} />
       <script dangerouslySetInnerHTML={{__html: `
         const video = document.getElementById('video');
         const config = { video: true, audio: false };
         navigator.mediaDevices.getUserMedia(config).then(stream => {
           video.srcObject = stream;
+          video.play();
 
           const canvas = document.getElementById('canvas');
           const context = canvas.getContext('2d');
