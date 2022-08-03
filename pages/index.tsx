@@ -40,7 +40,8 @@ const Home: NextPage = () => {
       context.scale(-1, 1);
       context.translate(-canvas.width, 0);
     }
-    context.drawImage(video, canvas.width / 2 - streamWidth / 2, canvas.height / 2 - streamHeight / 2);
+    // context.drawImage(video, canvas.width / 2 - streamWidth / 2, canvas.height / 2 - streamHeight / 2);
+    context.drawImage(video, canvas.width / 2 - streamHeight / 2, canvas.height / 2 - streamWidth / 2);
 
     if (faced) {
       context.scale(-1, 1);
