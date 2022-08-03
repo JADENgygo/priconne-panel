@@ -40,6 +40,7 @@ const Home: NextPage = () => {
     const os = platform?.os?.family?.toLowerCase();
     const product = platform?.product?.toLowerCase();
     if (!os || !product) {
+      alert("os: " + os + " product: " + product)
       return;
     }
     let width: number;
