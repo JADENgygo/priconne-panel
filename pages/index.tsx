@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react';
 
 const Home: NextPage = () => {
-  const [faced, setFaced] = useState(true);
+  const [faced, setFaced] = useState(false);
   const width = 727;
   const height = 637;
   const saveImage = () => {
