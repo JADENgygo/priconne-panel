@@ -48,32 +48,33 @@ const Home: NextPage = () => {
     let width: number;
     let height: number;
     // if (os.startsWith('ios') || os.startsWith('android')) {
-      switch (screen.orientation.type) {
-        case "landscape-primary":
-        case "landscape-secondary": 
-          width = streamWidth;
-          height = streamHeight;
-          break;
-        case "portrait-secondary":
-        case "portrait-primary":
-          console.log('here')
-          width = streamWidth;
-          height = streamHeight;
-          // width = streamHeight;
-          // height = streamWidth;
-          break;
-        default:
-          width = streamWidth;
-          height = streamHeight;
-          break;
-      }
+      // switch (screen.orientation.type) {
+      //   case "landscape-primary":
+      //   case "landscape-secondary": 
+      //     width = streamWidth;
+      //     height = streamHeight;
+      //     break;
+      //   case "portrait-secondary":
+      //   case "portrait-primary":
+      //     console.log('here')
+      //     width = streamWidth;
+      //     height = streamHeight;
+      //     // width = streamHeight;
+      //     // height = streamWidth;
+      //     break;
+      //   default:
+      //     width = streamWidth;
+      //     height = streamHeight;
+      //     break;
+      // }
     // }
     // else {
     //   width = streamWidth;
     //   height = streamHeight;
     // }
     alert('')
-    context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
+    // context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
+    context.drawImage(video, canvas.width / 2 - streamWidth / 2, canvas.height / 2 - streamHeight / 2);
 
 
     if (faced) {
