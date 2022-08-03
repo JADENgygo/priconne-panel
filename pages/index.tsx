@@ -40,12 +40,13 @@ const Home: NextPage = () => {
     }
     
     const os = platform?.os?.family?.toLowerCase();
-    if (!os) {
+    const product = platform?.product?.toLowerCase();
+    if (!os || !product) {
       return;
     }
     let width: number;
     let height: number;
-    if (os.startsWith('ios') || os.startsWith('android')) {
+    if (os.startsWith('ios') || os.startsWith('android') || product.startsWith("ipad")) {
       switch (window.orientation) {
         case 0:
         case 180:
