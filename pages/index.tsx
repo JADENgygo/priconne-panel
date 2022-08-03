@@ -33,17 +33,17 @@ const Home: NextPage = () => {
       img.src = "/panel.png";
 
       setInterval(() => {
-        if (faced) {
-          context.scale(-1, 1);
-          context.translate(-canvas.width, 0);
-        }
+        // if (faced) {
+        //   context.scale(-1, 1);
+        //   context.translate(-canvas.width, 0);
+        // }
 
         context.drawImage(video, 0, 0);
 
-        if (faced) {
-          context.scale(-1, 1);
-          context.translate(-canvas.width, 0);
-        }
+        // if (faced) {
+        //   context.scale(-1, 1);
+        //   context.translate(-canvas.width, 0);
+        // }
 
         //context.drawImage(img, 0, 0);
       }, 33);
