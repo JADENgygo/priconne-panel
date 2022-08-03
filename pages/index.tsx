@@ -29,11 +29,6 @@ const Home: NextPage = () => {
       return;
     }
 
-    if (faced) {
-      context.scale(-1, 1);
-      context.translate(-canvas.width, 0);
-    }
-    
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     let width: number;
@@ -53,13 +48,17 @@ const Home: NextPage = () => {
     if (!video) {
       return;
     }
+    if (faced) {
+      context.scale(-1, 1);
+      context.translate(-canvas.width, 0);
+    }
     context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
 
     if (faced) {
       context.scale(-1, 1);
       context.translate(-canvas.width, 0);
     }
-    context.drawImage(image, 0, 0);
+    // context.drawImage(image, 0, 0);
   };
 
   const callbackRef = useRef(callback);
@@ -74,7 +73,7 @@ const Home: NextPage = () => {
     }
 
     let intervalId: number;
-    const config = { video: { facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
+    const config = { video: { width: 727, height: 637, facingMode: faced ? "user" : {exact: 'environment'} }, audio: false };
     navigator.mediaDevices.getUserMedia(config).then(stream => {
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       if (!canvas) {
