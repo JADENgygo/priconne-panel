@@ -39,6 +39,7 @@ const Home: NextPage = () => {
       context.translate(-canvas.width, 0);
     }
     
+    alert('')
     const os = platform?.os?.family?.toLowerCase();
     // console.log("os", os)
     // if (!os) {
