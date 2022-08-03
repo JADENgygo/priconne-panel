@@ -70,6 +70,12 @@ const Home: NextPage = () => {
       console.log("tracks: " + stream.getVideoTracks().length)
       sett(stream.getVideoTracks().length)
 
+      const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+      if (!canvas) {
+        return;
+      }
+      alert(canvas.width  + " " + canvas.height)
+
       video.srcObject = stream;
       setCameraStream(_ => stream);
       const streamWidth = stream.getVideoTracks()[0].getSettings().width;
