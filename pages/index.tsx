@@ -41,9 +41,9 @@ const Home: NextPage = () => {
     
     const os = platform?.os?.family?.toLowerCase();
     // console.log("os", os)
-    if (!os) {
-      return;
-    }
+    // if (!os) {
+    //   return;
+    // }
     let width: number;
     let height: number;
     // if (os.startsWith('ios') || os.startsWith('android')) {
