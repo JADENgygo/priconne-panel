@@ -33,13 +33,17 @@ const Home: NextPage = () => {
       img.src = "/panel.png";
 
       setInterval(() => {
-        context.scale(-1, 1);
-        context.translate(-canvas.width, 0);
+        if (faced) {
+          context.scale(-1, 1);
+          context.translate(-canvas.width, 0);
+        }
 
         context.drawImage(video, 0, 0);
 
-        context.scale(-1, 1);
-        context.translate(-canvas.width, 0);
+        if (faced) {
+          context.scale(-1, 1);
+          context.translate(-canvas.width, 0);
+        }
 
         context.drawImage(img, 0, 0);
       }, 33);
@@ -66,7 +70,7 @@ const Home: NextPage = () => {
         <p>元ネタ: <a href="https://cystore.com/products/4573478717023">エリザベスパークの特大顔出しパネル</a></p>
         <canvas id="canvas" width={width} height={height} />
         <div>
-          <video id="video" width={1} height={1} playsInline autoPlay muted loop style={{"transform": "scaleX(-1)"}} />
+          <video id="video" width={1} height={1} playsInline autoPlay muted loop style={{"transform": faced ? "scaleX(-1)" : "scaleX(1)"}} />
         </div>
         <div className="mb-3">
           <button onClick={changeCamera} className="btn btn-dark me-3">カメラ切替</button>
