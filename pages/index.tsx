@@ -67,6 +67,7 @@ const Home: NextPage = () => {
           height = streamHeight;
           break;
       }
+      alert("if end")
     }
     else {
       alert("else")
