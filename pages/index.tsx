@@ -40,12 +40,13 @@ const Home: NextPage = () => {
     }
     
     const os = platform?.os?.family?.toLowerCase();
+    // console.log("os", os)
     if (!os) {
       return;
     }
     let width: number;
     let height: number;
-    if (os.startsWith('ios') || os.startsWith('android')) {
+    // if (os.startsWith('ios') || os.startsWith('android')) {
       switch (screen.orientation.type) {
         case "landscape-primary":
         case "landscape-secondary": 
@@ -54,19 +55,22 @@ const Home: NextPage = () => {
           break;
         case "portrait-secondary":
         case "portrait-primary":
-          width = streamHeight;
-          height = streamWidth;
+          console.log('here')
+          width = streamWidth;
+          height = streamHeight;
+          // width = streamHeight;
+          // height = streamWidth;
           break;
         default:
           width = streamWidth;
           height = streamHeight;
           break;
       }
-    }
-    else {
-      width = streamWidth;
-      height = streamHeight;
-    }
+    // }
+    // else {
+    //   width = streamWidth;
+    //   height = streamHeight;
+    // }
     context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
 
     if (faced) {
@@ -95,6 +99,7 @@ const Home: NextPage = () => {
         return;
       }
 
+      console.log("rate", stream.getVideoTracks()[0].getSettings().aspectRatio);
       video.srcObject = stream;
       setCameraStream(_ => stream);
       const streamWidth = stream.getVideoTracks()[0].getSettings().width;
