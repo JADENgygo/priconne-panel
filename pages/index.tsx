@@ -41,45 +41,28 @@ const Home: NextPage = () => {
     
     const os = platform?.os?.family?.toLowerCase();
     if (!os) {
-      alert("return")
       return;
     }
     let width: number;
     let height: number;
     if (os.startsWith('ios') || os.startsWith('android')) {
-      alert("if")
-      alert("if-next")
-      alert("type0 " + screen?.orientation?.type);
-      alert("type1 " + screen?.orientation);
-      alert("type2 " + screen?.orientation.type);
-      switch (screen.orientation.type) {
-        case "landscape-primary":
-        case "landscape-secondary": 
-          alert("landscape")
-          width = streamWidth;
-          height = streamHeight;
-          break;
-        case "portrait-secondary":
-        case "portrait-primary":
-          alert("portrait")
-          width = streamWidth;
-          height = streamHeight;
+      switch (window.orientation) {
+        case 0:
+        case 180:
+          width = streamHeight;
+          height = streamWidth;
           break;
         default:
-          alert("default")
           width = streamWidth;
           height = streamHeight;
           break;
       }
-      alert("if end")
     }
     else {
-      alert("else")
       width = streamWidth;
       height = streamHeight;
     }
-    // context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
-    context.drawImage(video, canvas.width / 2 - streamWidth / 2, canvas.height / 2 - streamHeight / 2);
+    context.drawImage(video, canvas.width / 2 - width / 2, canvas.height / 2 - height / 2);
 
 
     if (faced) {
@@ -108,7 +91,6 @@ const Home: NextPage = () => {
         return;
       }
 
-      console.log("rate", stream.getVideoTracks()[0].getSettings().aspectRatio);
       video.srcObject = stream;
       setCameraStream(_ => stream);
       const streamWidth = stream.getVideoTracks()[0].getSettings().width;
