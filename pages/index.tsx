@@ -3,13 +3,26 @@ import { useRef, useState, useEffect } from 'react';
 
 const Home: NextPage = () => {
   const [faced, setFaced] = useState(true);
-
   const [image, setImage] = useState((null as unknown) as HTMLImageElement);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
   useEffect(() => {
     const img = document.createElement('img')
-    img.src = "/panel.png";
+    img.src = "/panel_all_transparent.webp";
     setImage(img);
   }, []);
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    setTheme(theme === "dark" ? "dark" : "light");
+  }, []);
+
+  const changeTheme = () => {
+    document.querySelector('html')?.classList.toggle('dark');
+    const theme = localStorage.getItem('theme');
+    localStorage.setItem("theme", theme === "dark" ? "light" : "dark");
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   const [cameraStream, setCameraStream] = useState((null as unknown) as MediaStream);
   const changeCamera = () => {
@@ -104,20 +117,21 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="container pt-3">
+    <div className="container pt-1">
+      <div className="text-end mb-3"><span className="link" onClick={changeTheme}>ダークモード: { theme === "light" ? "オフ" : "オン" }</span></div>
       <div className="text-center">
         <p className="fs-1">プリコネパネル</p>
         <p>カメラの使用を許可すると顔出しパネルで画像を作成できます</p>
-        <p>元ネタ: <a href="https://cystore.com/products/4573478717023">エリザベスパークの特大顔出しパネル</a></p>
+        <p>元ネタ: <a className="link" href="https://cystore.com/products/4573478717023">エリザベスパークの特大顔出しパネル</a></p>
         <canvas id="canvas" width={728} height={639} />
         <div>
           <video id="video" width={1} height={1} playsInline autoPlay muted loop style={{"transform": faced ? "scaleX(1)" : "scaleX(1)"}} />
         </div>
         <div className="mb-3">
-          <button onClick={changeCamera} className="btn btn-dark me-3">カメラ切替</button>
-          <button onClick={saveImage} className="btn btn-dark">画像を保存</button>
+          <button onClick={changeCamera} className="btn btn-outline-dark me-3">カメラ切替</button>
+          <button onClick={saveImage} className="btn btn-outline-dark">画像を保存</button>
         </div>
-        <div className="alert alert-info" role="alert">
+        <div className="alert alert-info keep" role="alert">
           保存ボタンが動作しない場合は、画像部分を直接保存してください
         </div>
       </div>
